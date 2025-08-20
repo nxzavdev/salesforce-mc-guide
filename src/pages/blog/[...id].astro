@@ -1,0 +1,23 @@
+---
+// src/pages/blog/[...id].astro
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true
+  );
+  return posts.map((post) => ({
+    params: { id: post.id }, // admite subrutas (catch-all)
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { data } = post;
+---
+
+<PostLayout {...data}>
+  <Content />
+</PostLayout>

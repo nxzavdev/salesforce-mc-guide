@@ -1,11 +1,27 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// src/pages/index.astro
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = (
+  await getCollection('posts', ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true
+  )
+).sort((a, b) => +b.data.pubDate - +a.data.pubDate);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Blog" description="Blog posts">
+  <main style="max-width:760px;margin:2rem auto;padding:0 1rem;">
+    <h1>Guía de Salesforce Marketing Cloud</h1>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <small> — {post.data.pubDate.toLocaleDateString()}</small>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
 </Layout>
