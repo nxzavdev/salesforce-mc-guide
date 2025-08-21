@@ -300,7 +300,7 @@ SELECT
     F.SellingDealerKey,
     F.ConsumerTypeCodeDesc,
     F.AcquisitionDate
-FROM [AOR_May_25_Dedup] F
+FROM [DataExtensionSource] F
 WHERE F.SubscriberKey IS NOT NULL
 ```
 

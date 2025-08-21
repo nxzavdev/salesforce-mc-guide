@@ -14,20 +14,20 @@
   --muted: #6b7280;
   --soft: #f5f7fb;
   --border: #e5e7eb;
-  --accent: #2563eb;
+  --accent: #408cff;
   --code-bg: #0f172a; /* oscuro para contraste */
   --code-text: #e5e7eb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0D1117;
+    --bg: #1a222e;
     --text: #e5e7eb;
     --muted: #9aa4b2;
     --soft: #11161c;
     --border: #243244;
     --accent: #6ba6ff;
-    --code-bg: #010409;
+    --code-bg: #0f151f;
     --code-text: #e8edf7;
   }
 }

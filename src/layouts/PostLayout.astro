@@ -12,9 +12,70 @@ import Header from '../components/Header.astro';
     {description && <meta name="description" content={description} />}
   </head>
   <body>
+    <div id="scroll-top">
+      <a href="#">Ir al inicio</a>
+    </div>
     <Header />
     <article class="container prose">
       <slot />
     </article>
   </body>
 </html>
+
+<style>
+  #scroll-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @media (min-width: 768px) {
+    #scroll-top {
+      bottom: 1rem;
+      right: 1rem;
+      transform: translateX(0);
+    }
+  }
+
+  #scroll-top a {
+    padding: 0.5rem 1rem;
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  import { throttle } from '../utils';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollTop = document.getElementById('scroll-top') as HTMLElement;
+    const throttledScroll = throttle(() => {
+      if (window.scrollY > 1000) {
+        scrollTop.style.display = 'block';
+        console.log('block');
+      } else {
+        scrollTop.style.display = 'none';
+        console.log('none');
+      }
+    }, 200);
+    if (scrollTop) {
+      window.addEventListener('scroll', throttledScroll);
+    }
+  });
+</script>
