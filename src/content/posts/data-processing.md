@@ -1,5 +1,5 @@
 ---
-title: 'Guía de Verificación y Procesamiento de Data Extensions en Automation Studio'
+title: 'Verificación y procesamiento de Data Extensions en Automation Studio'
 description: 'Procedimiento para comprobar publicación e integridad de Data Extensions provenientes de Data Cloud antes de procesarlas en Automation Studio.'
 pubDate: 2025-08-19
 tags: ['sfmc', 'data-cloud', 'automation-studio', 'data-extensions', 'guia']
